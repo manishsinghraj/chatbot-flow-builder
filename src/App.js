@@ -44,7 +44,7 @@ const App = () => {
   //  from react flow doc
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
-    [],
+    [setEdges],
   );
 
 
@@ -86,7 +86,7 @@ const App = () => {
 
       setNodes((nds) => nds.concat(newNode));
     },
-    [reactFlowInstance],
+    [reactFlowInstance, setNodes],
   );
 
 
@@ -109,7 +109,7 @@ const App = () => {
         }, edges)
       );
     },
-    [nodes, edges]
+    [nodes, edges, setEdges]
   );
 
 
@@ -191,7 +191,7 @@ const App = () => {
     if (storedEdges) {
       setEdges(JSON.parse(storedEdges));
     }
-  }, []);
+  }, [setNodes, setEdges]);
 
 
   const options = {
